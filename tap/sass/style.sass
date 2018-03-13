@@ -1,0 +1,196 @@
+/* The version of Bourbon used in this Pen was 4.* */
+@import "bourbon"
+
+@mixin ghost-button($button-color: #08c)
+  @include transition(.3s background, .3s color)
+
+  display: inline-block
+  border: 1px solid $button-color
+  color: #fff
+  padding: .5rem 2.5rem
+  border-radius: 3px
+  text-transform: uppercase
+  cursor: pointer
+  font-weight: 200
+  vertical-align: middle
+  
+  .button-icon
+    margin-right: .55rem
+    font-size: 16px
+    color: $button-color
+  
+  &:hover
+    background: fade-out($button-color, .75)
+
+$grey: #444345
+$yellow: #F1C32F
+$orange: #EC5519
+$green: #169F4D
+
+$box-size: 4rem
+$box-color: lighten($grey, 20%)
+$box-spacing: 5px
+$box-active-color: $yellow
+
+$row-count: 5
+$column-count: 5
+
+*, *:before, *:after
+  @include box-sizing(border-box)
+
+html
+  @include user-select(none)
+
+  background: $grey
+  color: #fff
+  font: 14px Lato
+  
+body
+  width: 100%
+  max-width: 600px  
+  margin: 0 auto
+  
+h1
+  font: 3rem Comfortaa
+  text-transform: uppercase
+  text-align: center
+  margin: 2rem 0
+  letter-spacing: 10px
+  
+  span
+    color: $box-active-color
+    
+a
+  text-decoration: none
+  color: #fff
+
+.new-game
+  @include ghost-button($box-active-color)
+
+.help
+  font-weight: normal
+  border-bottom: 1px solid $box-active-color
+
+.instructions
+  width: 400px
+  margin: 2rem auto
+  display: none
+  text-align: center
+  font-weight: 300
+  
+.container
+  @include perspective(1000px)
+
+  text-align: center
+  margin: 0 0 2rem
+  min-height: 50vh
+  position: relative
+  
+  &:after
+    @include transition(.5s transform)
+    @include transform(rotate(-900deg) scale(0))
+
+    content: 'GREAT SUCCESS!'
+    position: absolute
+    top: 4rem
+    left: 50%
+    width: 22rem
+    margin-left: -11rem
+    font-size: 4rem
+    font-weight: 900
+    font-family: Comfortaa
+    text-align: center
+    letter-spacing: 10px
+    text-shadow: 0 0 3px rgba(0, 0, 0, .5)
+    
+  &.solved:after
+    @include transform(rotate(-18deg) scale(1))
+  
+.box
+  @include transition(.5s transform)
+  @include transform-style(preserve-3d)
+
+  display: inline-block
+  width: $box-size
+  height: $box-size
+  margin: $box-spacing
+  background: $box-color
+  border-radius: 4px
+  position: relative
+  
+  &:not(.disabled)
+    cursor: pointer
+  
+  &:before,
+  &:after
+    backface-visibility: hidden
+    content: ''
+    border-radius: 4px
+    height: inherit
+    width: inherit
+    display: inline-block
+    position: absolute
+    top: 0
+    left: 0
+  
+  &:hover:before
+    background: lighten($box-color, 10%)
+
+  &:before
+    background: $box-color
+    z-index: 2
+  
+  &:after
+    @include transform(rotateY(180deg))
+
+    background: $box-active-color
+  
+  &.active
+    @include transform(rotateY(180deg))
+   
+.controls
+  position: fixed
+  bottom: 0
+  left: 0
+  right: 0
+  height: 4rem
+  background: fade-out($grey, .2)
+  
+  .wrapper
+    display: table
+    width: 600px
+    margin: 0 auto 2rem
+
+  .cell
+    display: table-cell
+    width: 25%
+    vertical-align: middle
+    text-align: center
+  
+.progress-bar
+  width: 80%
+  margin: 0 auto
+  height: 20px
+  background: $box-color
+  border-radius: 2px
+  position: relative
+          
+  .progress
+    @include transition(1s min-width)
+    @include transition-timing-function(ease-in-out)
+  
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    background: $box-active-color
+    width: 0
+    min-width: 0
+    border-radius: 1px
+    z-index: 20
+
+.progress-label
+  font-size: .7rem
+  color: $box-active-color
+  margin: 0 0 5px

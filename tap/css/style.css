@@ -1,0 +1,204 @@
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background: #444345;
+  color: #fff;
+  font: 14px Lato;
+}
+
+body {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+h1 {
+  font: 3rem Comfortaa;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 2rem 0;
+  letter-spacing: 10px;
+}
+h1 span {
+  color: #F1C32F;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.new-game {
+  -webkit-transition: 0.3s background, 0.3s color;
+  transition: 0.3s background, 0.3s color;
+  display: inline-block;
+  border: 1px solid #F1C32F;
+  color: #fff;
+  padding: 0.5rem 2.5rem;
+  border-radius: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: 200;
+  vertical-align: middle;
+}
+.new-game .button-icon {
+  margin-right: 0.55rem;
+  font-size: 16px;
+  color: #F1C32F;
+}
+.new-game:hover {
+  background: rgba(241, 195, 47, 0.25);
+}
+
+.help {
+  font-weight: normal;
+  border-bottom: 1px solid #F1C32F;
+}
+
+.instructions {
+  width: 400px;
+  margin: 2rem auto;
+  display: none;
+  text-align: center;
+  font-weight: 300;
+}
+
+.container {
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+  text-align: center;
+  margin: 0 0 2rem;
+  min-height: 50vh;
+  position: relative;
+}
+.container:after {
+  -webkit-transition: 0.5s transform;
+  -webkit-transition: 0.5s -webkit-transform;
+  transition: 0.5s -webkit-transform;
+  transition: 0.5s transform;
+  transition: 0.5s transform, 0.5s -webkit-transform;
+  -webkit-transform: rotate(-900deg) scale(0);
+  transform: rotate(-900deg) scale(0);
+  content: "GREAT SUCCESS!";
+  position: absolute;
+  top: 4rem;
+  left: 50%;
+  width: 22rem;
+  margin-left: -11rem;
+  font-size: 4rem;
+  font-weight: 900;
+  font-family: Comfortaa;
+  text-align: center;
+  letter-spacing: 10px;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
+.container.solved:after {
+  -webkit-transform: rotate(-18deg) scale(1);
+  transform: rotate(-18deg) scale(1);
+}
+
+.box {
+  -webkit-transition: 0.5s transform;
+  -webkit-transition: 0.5s -webkit-transform;
+  transition: 0.5s -webkit-transform;
+  transition: 0.5s transform;
+  transition: 0.5s transform, 0.5s -webkit-transform;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  display: inline-block;
+  width: 4rem;
+  height: 4rem;
+  margin: 5px;
+  background: #777579;
+  border-radius: 4px;
+  position: relative;
+}
+.box:not(.disabled) {
+  cursor: pointer;
+}
+.box:before, .box:after {
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  content: "";
+  border-radius: 4px;
+  height: inherit;
+  width: inherit;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.box:hover:before {
+  background: #918f92;
+}
+.box:before {
+  background: #777579;
+  z-index: 2;
+}
+.box:after {
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+  background: #F1C32F;
+}
+.box.active {
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+
+.controls {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4rem;
+  background: rgba(68, 67, 69, 0.8);
+}
+.controls .wrapper {
+  display: table;
+  width: 600px;
+  margin: 0 auto 2rem;
+}
+.controls .cell {
+  display: table-cell;
+  width: 25%;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.progress-bar {
+  width: 80%;
+  margin: 0 auto;
+  height: 20px;
+  background: #777579;
+  border-radius: 2px;
+  position: relative;
+}
+.progress-bar .progress {
+  -webkit-transition: 1s min-width;
+  transition: 1s min-width;
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #F1C32F;
+  width: 0;
+  min-width: 0;
+  border-radius: 1px;
+  z-index: 20;
+}
+
+.progress-label {
+  font-size: 0.7rem;
+  color: #F1C32F;
+  margin: 0 0 5px;
+}
