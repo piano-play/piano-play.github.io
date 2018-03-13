@@ -1,0 +1,10 @@
+.DS_Store
+*.min.js
+node_modules
+plugins
+editor
+bamboo
+.jscsrc
+media/*
+!media/panda.png
+
